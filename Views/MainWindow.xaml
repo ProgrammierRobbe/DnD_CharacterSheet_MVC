@@ -1,0 +1,343 @@
+﻿<Window x:Class="DnD_CharacterSheet_MVC.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DnD_CharacterSheet_MVC"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="900" Width="700" ResizeMode="CanResize">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <StackPanel>
+            <TextBlock Text="CHARACTER NAME"></TextBlock>
+            <Border>
+                <TextBox></TextBox>
+            </Border>
+        </StackPanel>
+        <StackPanel Grid.Column="1">
+            <TextBlock Text="CLASS AND LEVEL"></TextBlock>
+            <Border>
+                <TextBox></TextBox>
+            </Border>
+            <TextBlock Text="RACE"></TextBlock>
+            <Border>
+                <TextBox></TextBox>
+            </Border>
+        </StackPanel>
+        <StackPanel Grid.Column="2">
+            <TextBlock Text="BACKGROUND"></TextBlock>
+            <Border>
+                <TextBox></TextBox>
+            </Border>
+            <TextBlock Text="ALIGNMENT"></TextBlock>
+            <Border>
+                <TextBox></TextBox>
+            </Border>
+        </StackPanel>
+        <StackPanel Grid.Column="3">
+            <TextBlock Text="PLAYER NAME"></TextBlock>
+            <Border>
+                <TextBox></TextBox>
+            </Border>
+            <TextBlock Text="EXP POINTS"></TextBlock>
+            <Border>
+                <TextBox></TextBox>
+            </Border>
+        </StackPanel>
+        <StackPanel Grid.Row="1" Grid.Column="0">
+            <TextBlock Text="STRENGTH" TextAlignment="Center"></TextBlock>
+            <TextBlock Text="{Binding CalcedStrength}"></TextBlock>
+            <Border>
+                <TextBox Text="{Binding Strength,UpdateSourceTrigger=PropertyChanged}"></TextBox>
+            </Border>
+
+        </StackPanel>
+        <StackPanel Grid.Row="2" Grid.Column="0">
+            <TextBlock Text="DEXTERITY" TextAlignment="Center"></TextBlock>
+            <TextBlock Text="{Binding CalcedDexterity}"></TextBlock>
+            <Border>
+                <TextBox Text= "{Binding Dexterity,UpdateSourceTrigger=PropertyChanged}"></TextBox>
+            </Border>
+        </StackPanel>
+        <StackPanel Grid.Row="3" Grid.Column="0">
+            <TextBlock Text="CONSTITUTION" TextAlignment="Center"></TextBlock>
+            <TextBlock Text="{Binding CalcedConstitution}"></TextBlock>
+            <Border>
+                <TextBox Text="{Binding Constitution, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+            </Border>
+        </StackPanel>
+        <StackPanel Grid.Row="4" Grid.Column="0">
+            <TextBlock Text="INTELLIGENCE" TextAlignment="Center"></TextBlock>
+            <TextBlock Text="{Binding CalcedIntelligence}"></TextBlock>
+            <Border>
+                <TextBox Text="{Binding Intelligence, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+            </Border>
+        </StackPanel>
+        <StackPanel Grid.Row="5" Grid.Column="0">
+            <TextBlock Text="WIDSOM" TextAlignment="Center"></TextBlock>
+            <TextBlock Text="{Binding CalcedWisdom}"></TextBlock>
+            <Border>
+                <TextBox Text="{Binding Wisdom, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+            </Border>
+        </StackPanel>
+        <StackPanel Grid.Row="6" Grid.Column="0">
+            <TextBlock Text="CHARISMA" TextAlignment="Center"></TextBlock>
+            <TextBlock Text="{Binding CalcedCharisma}"></TextBlock>
+            <Border>
+                <TextBox Text="{Binding Charisma, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+            </Border>
+        </StackPanel>
+        <StackPanel Grid.Row="7" Grid.RowSpan="2">
+            <TextBlock Text="PASSIVE WISDOM" TextAlignment="Center"></TextBlock>
+            <TextBlock></TextBlock>
+            <Border>
+                <TextBox></TextBox>
+            </Border>
+            <Viewbox>
+                <TextBlock Text="OTHER PROFICIENCIES AND LANGUAGES" ></TextBlock>
+            </Viewbox>
+            <ListView Height="130" ItemsSource="{Binding Prof_LangsList}">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Proficiencies" DisplayMemberBinding="{Binding Profciency}"></GridViewColumn>
+                        <GridViewColumn Header="Languages" DisplayMemberBinding="{Binding Language}"></GridViewColumn>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </StackPanel>
+        <StackPanel Grid.Row="1" Grid.Column="1">
+            <TextBlock  Text="INSPIRATION" TextAlignment="Center"></TextBlock>
+            <Border>
+                <TextBox></TextBox>
+            </Border>
+            <TextBlock Text="PROFICIENCY BONUS" TextAlignment="Center"></TextBlock>
+            <Border>
+                <TextBox Text="{Binding Proficiency}"></TextBox>
+            </Border>
+        </StackPanel>
+        <StackPanel Grid.Row="2" Grid.Column="1" Grid.RowSpan="7">
+            <TextBlock Text="SAVING THROWS" TextAlignment="Center"></TextBlock>
+            <TextBlock Text="Strength: ">            
+                <CheckBox IsChecked="{Binding StrengthST,UpdateSourceTrigger=PropertyChanged}" ></CheckBox>
+                  <TextBlock Width="20" Text="{Binding CalcedStrengthST}" ></TextBlock>
+            </TextBlock>
+            <TextBlock Text="Dexterity: ">
+               
+       <CheckBox IsChecked="{Binding DexterityST,UpdateSourceTrigger=PropertyChanged}"></CheckBox>
+                 <TextBlock Width="20" Text="{Binding CalcedDexterityST}"></TextBlock>
+            </TextBlock>
+            <TextBlock Text="Constitution: ">
+       <CheckBox IsChecked="{Binding ConstitutionST,UpdateSourceTrigger=PropertyChanged}"></CheckBox>
+                 <TextBlock Width="20" Text="{Binding CalcedConstitutionST}"></TextBlock>
+            </TextBlock>
+            <TextBlock Text="Intelligence: ">
+       <CheckBox IsChecked="{Binding IntelligenceST, UpdateSourceTrigger=PropertyChanged}"></CheckBox>
+                 <TextBlock Width="20" Text="{Binding CalcedIntelligenceST}"></TextBlock>
+            </TextBlock>
+            <TextBlock Text="Wisdom: ">
+        <CheckBox IsChecked="{Binding WisdomST, UpdateSourceTrigger=PropertyChanged}"></CheckBox>
+                 <TextBlock Width="20" Text="{Binding CalcedWisdomST}"></TextBlock>
+            </TextBlock>
+            <TextBlock Text="Charisma: ">
+      <CheckBox IsChecked="{Binding CharismaST, UpdateSourceTrigger=PropertyChanged}"></CheckBox>
+                 <TextBlock Width="20" Text="{Binding CalcedCharismaST}"></TextBlock>
+            </TextBlock>
+            <TextBlock Text="SKILLS" TextAlignment="Center"></TextBlock>
+            <TextBlock Text="Acrobatics: ">
+             <CheckBox IsChecked="{Binding DexterityST, UpdateSourceTrigger=PropertyChanged}"></CheckBox>
+                 <TextBlock Width="20" Text="{Binding CalcedDexterityST}"></TextBlock>
+            </TextBlock>
+            <TextBlock Text="Animal Handling: ">
+      <CheckBox IsChecked="{Binding WisdomST, UpdateSourceTrigger=PropertyChanged}"></CheckBox>
+                 <TextBlock Width="20" Text="{Binding CalcedWisdomST}"></TextBlock>
+            </TextBlock>
+            <TextBlock Text="Arcana: ">
+       <CheckBox IsChecked="{Binding IntelligenceST, UpdateSourceTrigger=PropertyChanged}"></CheckBox>
+                 <TextBlock Width="20" Text="{Binding CalcedIntelligenceST}"></TextBlock>
+            </TextBlock>
+            <TextBlock Text="Athletics: ">
+        <CheckBox IsChecked="{Binding StrengthST, UpdateSourceTrigger=PropertyChanged}"></CheckBox>
+                 <TextBlock Width="20" Text="{Binding CalcedStrengthST}"></TextBlock>
+            </TextBlock>
+            <TextBlock Text="Deception: ">
+      <CheckBox IsChecked="{Binding CharismaST, UpdateSourceTrigger=PropertyChanged}"></CheckBox>
+                 <TextBlock Width="20" Text="{Binding CalcedWisdomST}"></TextBlock>
+            </TextBlock>
+            <TextBlock Text="History: ">
+      <CheckBox IsChecked="{Binding IntelligenceST, UpdateSourceTrigger=PropertyChanged}"></CheckBox>
+                 <TextBlock Width="20" Text="{Binding CalcedIntelligenceST}"></TextBlock>
+            </TextBlock>
+            <TextBlock Text="Insight: ">
+                <CheckBox IsChecked="{Binding WidsomST, UpdateSourceTrigger=PropertyChanged}"></CheckBox>
+                 <TextBlock Width="20" Text="{Binding CalcedWisdomST}"></TextBlock>
+            </TextBlock>
+            <TextBlock Text="Intimidation: ">
+        <CheckBox IsChecked="{Binding CharismaST, UpdateSourceTrigger=PropertyChanged}"></CheckBox>
+                 <TextBlock Width="20" Text="{Binding CalcedCharismaST}"></TextBlock>
+            </TextBlock>
+            <TextBlock Text="Investigation: ">
+       <CheckBox IsChecked="{Binding IntelligenceST, UpdateSourceTrigger=PropertyChanged}"></CheckBox>
+                 <TextBlock Width="20" Text="{Binding CalcedIntelligenceST}"></TextBlock>
+            </TextBlock>
+            <TextBlock Text="Medicine: ">
+        <CheckBox IsChecked="{Binding WisdomST, UpdateSourceTrigger=PropertyChanged}"></CheckBox>
+                 <TextBlock Width="20" Text="{Binding CalcedWisdomST}"></TextBlock>
+            </TextBlock>
+            <TextBlock Text="Nature: ">
+       <CheckBox IsChecked="{Binding IntelligenceST, UpdateSourceTrigger=PropertyChanged}"></CheckBox>
+                 <TextBlock Width="20" Text="{Binding CalcedIntelligenceST}"></TextBlock>
+            </TextBlock>
+            <TextBlock Text="Perception: ">
+        <CheckBox IsChecked="{Binding WisdomST, UpdateSourceTrigger=PropertyChanged}"></CheckBox>
+                 <TextBlock Width="20" Text="{Binding CalcedWisdomST}"></TextBlock>
+            </TextBlock>
+            <TextBlock Text="Performance: ">
+                 <CheckBox IsChecked="{Binding CharismaST, UpdateSourceTrigger=PropertyChanged}"></CheckBox>
+                 <TextBlock Width="20" Text="{Binding CalcedCharismaST}"></TextBlock>
+            </TextBlock>
+            <TextBlock Text="Persuasion: ">
+      <CheckBox IsChecked="{Binding CharismaST, UpdateSourceTrigger=PropertyChanged}"></CheckBox>
+                 <TextBlock Width="20" Text="{Binding CalcedCharismaST}"></TextBlock>
+            </TextBlock>
+            <TextBlock Text="Religion: ">
+      <CheckBox IsChecked="{Binding IntelligenceST, UpdateSourceTrigger=PropertyChanged}"></CheckBox>
+                 <TextBlock Width="20" Text="{Binding CalcedIntelligenceST}"></TextBlock>
+            </TextBlock>
+            <TextBlock Text="Sleight of Hand: ">
+      <CheckBox IsChecked="{Binding DexterityST, UpdateSourceTrigger=PropertyChanged}"></CheckBox>
+                 <TextBlock Width="20" Text="{Binding CalcedDexterityST}"></TextBlock>
+            </TextBlock>
+            <TextBlock Text="Stealth: ">
+      <CheckBox IsChecked="{Binding DexterityST,UpdateSourceTrigger=PropertyChanged}"></CheckBox>
+                 <TextBlock Width="20" Text="{Binding CalcedDexterityST}"></TextBlock>
+            </TextBlock>
+            <TextBlock Text="Survival: ">
+       <CheckBox IsChecked="{Binding WisdomST, UpdateSourceTrigger=PropertyChanged}"></CheckBox>
+                 <TextBlock Width="20" Text="{Binding CalcedWisdomST}"></TextBlock>
+            </TextBlock>
+        </StackPanel>
+        <StackPanel Grid.Row="1" Grid.Column="2" Grid.RowSpan="7">
+            <TextBlock Text="ARMOR CLASS" TextAlignment="Center"></TextBlock>
+            <Border>
+                <TextBox></TextBox>
+            </Border>
+            <TextBlock Text="INITIATIVE" TextAlignment="Center"></TextBlock>
+            <Border>
+                <TextBox></TextBox>
+            </Border>
+            <TextBlock Text="SPEED" TextAlignment="Center"></TextBlock>
+            <Border>
+                <TextBox></TextBox>
+            </Border>
+            <TextBlock Text="Hit Point Maximum" TextAlignment="Center"></TextBlock>
+            <TextBox></TextBox>
+            <TextBlock Text="Current Hit Points" TextAlignment="Center"></TextBlock>
+            <TextBox></TextBox>
+            <TextBlock Text="Temporary Hit Points" TextAlignment="Center"></TextBlock>
+            <TextBox></TextBox>
+            <TextBlock Text="DEATH SAVES" TextAlignment="Center"></TextBlock>
+            <TextBlock Text="SUCCESSES">
+                <RadioButton></RadioButton>
+                 <RadioButton></RadioButton>
+                 <RadioButton></RadioButton>
+            </TextBlock>
+            <TextBlock Text="FAILURES">
+                    <RadioButton></RadioButton>
+     <RadioButton></RadioButton>
+     <RadioButton></RadioButton>
+            </TextBlock>
+            <Viewbox>
+                <TextBlock Text="ATTACKS/SPELLCASTING"></TextBlock>
+            </Viewbox>
+            <ListView Height="150" ItemsSource="{Binding AttackSpellsList}">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Name" DisplayMemberBinding = "{Binding Path = AttackSpellName}"></GridViewColumn>
+                        <GridViewColumn Header="ATK Bonus" DisplayMemberBinding="{Binding Path = AttackBonus}"></GridViewColumn>
+                        <GridViewColumn Header="Damage/Type" DisplayMemberBinding="{Binding Path = DamageType}"></GridViewColumn>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+            <TextBlock Text="EQUIPMENT" TextAlignment="Center"></TextBlock>
+            <ListView Height="150" ItemsSource="{Binding Path=EquipmentList}">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Name" DisplayMemberBinding="{Binding  EQName}"></GridViewColumn>
+                        <GridViewColumn Header="ATK" DisplayMemberBinding="{Binding EQAttack}" ></GridViewColumn>
+                        <GridViewColumn Header="Damage" DisplayMemberBinding="{Binding EQDamage}" ></GridViewColumn>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </StackPanel>
+        <StackPanel Grid.Row="1" Grid.Column="3" Grid.RowSpan="8">
+            <TextBlock Text="PERSONALITY TRAITS" TextAlignment="Center"></TextBlock>
+            <TextBox></TextBox>
+            <TextBlock Text="IDEALS" TextAlignment="Center"></TextBlock>
+            <TextBox></TextBox>
+            <TextBlock Text="BONDS" TextAlignment="Center"></TextBlock>
+            <TextBox></TextBox>
+            <TextBlock Text="FLAWS" TextAlignment="Center"></TextBlock>
+            <TextBox></TextBox>
+            <TextBlock Text="FEATURES AND TRAITS" TextAlignment="Center"></TextBlock>
+            <ListView Height="200" ItemsSource="{Binding Path=Features_TraitsList}">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Features" DisplayMemberBinding="{Binding Path=Features}"></GridViewColumn>
+                        <GridViewColumn Header="Traits" DisplayMemberBinding="{Binding Path=Traits}"></GridViewColumn>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+            <TextBlock Text="INPUTS" TextAlignment="Center"></TextBlock>
+            <TextBlock Text="1.Proficiency 2.Languages"></TextBlock>
+            <Border>
+                <TextBox Text="{Binding Proficiency_}"></TextBox>
+            </Border>
+            <Border>
+                <TextBox Text="{Binding Language}"></TextBox>
+            </Border>
+            <Button Content="ADD" Command="{Binding Path=AddLanguage_Proficiency}"></Button>
+            <Viewbox>
+                <TextBlock Text="1.Name 2.ATK Bonus 3.Damage/Type"></TextBlock>
+            </Viewbox>
+            <TextBox Text="{Binding AttackName}"></TextBox>
+            <TextBox Text="{Binding AttackBonus}"></TextBox>
+            <TextBox Text="{Binding DamageType}"></TextBox>
+            <Button Content="ADD" Command="{Binding Path=AddAttacks_Spells}"></Button>
+            <TextBlock Text="EQ: 1.Name 2.ATK 3.Damage"></TextBlock>
+            <Border>
+                <TextBox Text="{Binding EQName}"></TextBox>
+            </Border>
+            <Border>
+                <TextBox Text="{Binding EQNameAttack}"></TextBox>
+            </Border>
+            <Border>
+                <TextBox Text="{Binding EQDamage}"></TextBox>
+            </Border>
+            <Button Content="ADD" Command="{Binding Path=AddEquipment}"></Button>
+            <TextBlock Text="1.Features 2.Traits"></TextBlock>
+            <Border>
+                <TextBox  Text="{Binding Features}"></TextBox>
+            </Border>
+            <Border>
+                <TextBox Text="{Binding Traits}"></TextBox>
+            </Border>
+            <Button Content="ADD" Command="{Binding Path=AddFeature_Trait}"></Button>
+        </StackPanel>
+    </Grid>
+</Window>
